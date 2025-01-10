@@ -1,8 +1,8 @@
 <?php
 
-defined('TYPO3_MODE') || die('Access denied.');
+defined('TYPO3') || die('Access denied.');
 
-if(!class_exists('\Mpdf\Mpdf')){
+if(!class_exists(\Mpdf\Mpdf::class)){
     $composerAutoloadFile = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath('form_pdf')
         . 'Resources/Private/PHP/autoload.php';
     if(file_exists($composerAutoloadFile)) {
@@ -19,8 +19,8 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks'][\Brightside\Form
 ];
 
 
-$boot = function () {
-    if (TYPO3_MODE === 'BE') {
+$boot = function (): void {
+    if (TYPO3 === 'BE') {
         /** @var \TYPO3\CMS\Core\Imaging\IconRegistry $iconRegistry */
         $iconRegistry = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Imaging\IconRegistry::class);
         $iconRegistry->registerIcon(

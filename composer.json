@@ -27,8 +27,8 @@
       "form"
     ],
     "require": {
-        "typo3/cms-core": "^11.5",
-        "typo3/cms-form": "^11.5",
+        "typo3/cms-core": "^11.5 || ^12",
+        "typo3/cms-form": "^11.5 || ^12",
         "mpdf/mpdf": "^8.1"
     },
     "autoload": {

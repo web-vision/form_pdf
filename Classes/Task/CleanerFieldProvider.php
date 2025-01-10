@@ -19,7 +19,7 @@ class CleanerFieldProvider extends AbstractAdditionalFieldProvider
      */
     public function getAdditionalFields(array &$taskInfo, $task, \TYPO3\CMS\Scheduler\Controller\SchedulerModuleController $schedulerModule)
     {
-        $additionalFields = array();
+        $additionalFields = [];
 
         /** @var CleanerTask $task */
 
@@ -36,14 +36,11 @@ class CleanerFieldProvider extends AbstractAdditionalFieldProvider
         $fieldId = 'task_days';
         $fieldName = 'tx_scheduler[cleaner][days]';
         $fieldCode = '<input type="text"  name="' . $fieldName . '" id="' . $fieldId . '" value="' .
-            htmlspecialchars($taskInfo['days']) . '" />';
+            htmlspecialchars((string) $taskInfo['days']) . '" />';
 
         $label = $this->getLanguageService()->sL('LLL:EXT:form_pdf/Resources/Private/Language/locallang.xlf:form_pdf.tasks.cleaner.days');
         $label = \TYPO3\CMS\Backend\Utility\BackendUtility::wrapInHelp('grabber', $fieldId, $label);
-        $additionalFields[$fieldId] = array(
-            'code' => $fieldCode,
-            'label' => $label
-        );
+        $additionalFields[$fieldId] = ['code' => $fieldCode, 'label' => $label];
 
         return $additionalFields;
     }
@@ -64,7 +61,7 @@ class CleanerFieldProvider extends AbstractAdditionalFieldProvider
             $isValid = FALSE;
             $this->addMessage(
                 $this->getLanguageService()->sL('LLL:EXT:form_pdf/Resources/Private/Language/locallang.xlf:form_pdf.tasks.cleaner.empty.days'),
-                \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR
+                \TYPO3\CMS\Core\Type\ContextualFeedbackSeverity::ERROR
             );
         }
 

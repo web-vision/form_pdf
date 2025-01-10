@@ -59,7 +59,7 @@ class CleanerTask extends AbstractTask
             $finder->files()->depth(0)
                 ->name(PdfService::PDF_TEMP_PREFIX . '*' . PdfService::PDF_TEMP_SUFFIX)
                 ->in($pdfTempDir);
-        } catch (\InvalidArgumentException $e) {
+        } catch (\InvalidArgumentException) {
             $finder = [];
         }
 

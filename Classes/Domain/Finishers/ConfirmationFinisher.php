@@ -46,7 +46,7 @@ class ConfirmationFinisher extends \TYPO3\CMS\Form\Domain\Finishers\Confirmation
             $this->finisherContext->getFormRuntime()
         );
 
-       
+
         //Extended
         $tempPdfFile = '';
         if ($this->finisherContext->getFinisherVariableProvider()->offsetExists('Pdf')) {
@@ -75,9 +75,9 @@ class ConfirmationFinisher extends \TYPO3\CMS\Form\Domain\Finishers\Confirmation
                 PdfService::PDF_NAME
             );
         }
-        
-        $filename = isset($filename) ? $filename : '';
-        $langId= isset($langId) ? $langId: '';
+
+        $filename ??= '';
+        $langId ??= '';
 
         $context = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Context\Context::class);
         $langId = $context->getPropertyFromAspect('language', 'id');

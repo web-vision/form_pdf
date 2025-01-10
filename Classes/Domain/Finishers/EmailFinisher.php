@@ -31,14 +31,14 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
         }
 
         $subject = $this->parseOption('subject');
-        $recipients = $this->getRecipients('recipients', 'recipientAddress', 'recipientName');
+        $recipients = $this->getRecipients('recipients');
         $senderAddress = $this->parseOption('senderAddress');
         $senderAddress = is_string($senderAddress) ? $senderAddress : '';
         $senderName = $this->parseOption('senderName');
         $senderName = is_string($senderName) ? $senderName : '';
-        $replyToRecipients = $this->getRecipients('replyToRecipients', 'replyToAddress');
-        $carbonCopyRecipients = $this->getRecipients('carbonCopyRecipients', 'carbonCopyAddress');
-        $blindCarbonCopyRecipients = $this->getRecipients('blindCarbonCopyRecipients', 'blindCarbonCopyAddress');
+        $replyToRecipients = $this->getRecipients('replyToRecipients');
+        $carbonCopyRecipients = $this->getRecipients('carbonCopyRecipients');
+        $blindCarbonCopyRecipients = $this->getRecipients('blindCarbonCopyRecipients');
         $addHtmlPart = $this->parseOption('addHtmlPart');
         $attachUploads = $this->parseOption('attachUploads');
         $useFluidEmail = $this->parseOption('useFluidEmail');
@@ -57,7 +57,7 @@ class EmailFinisher extends \TYPO3\CMS\Form\Domain\Finishers\EmailFinisher
 
         $formRuntime = $this->finisherContext->getFormRuntime();
 
-        $translationService = TranslationService::getInstance();
+        $translationService = GeneralUtility::makeInstance(TranslationService::class);
         if (is_string($this->options['translation']['language'] ?? null) && $this->options['translation']['language'] !== '') {
             $languageBackup = $translationService->getLanguage();
             $translationService->setLanguage($this->options['translation']['language']);
