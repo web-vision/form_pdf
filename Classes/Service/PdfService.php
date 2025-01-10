@@ -14,20 +14,6 @@ class PdfService
     const PDF_TEMP_SUFFIX = '-generated';
 
     /**
-     * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
-     */
-    protected $objectManager;
-
-    /**
-     * @param \TYPO3\CMS\Extbase\Object\ObjectManagerInterface $objectManager
-     * @internal
-     */
-    public function injectObjectManager(ObjectManagerInterface $objectManager)
-    {
-        $this->objectManager = $objectManager;
-    }
-
-    /**
      * @param $pdfFile
      * @param $htmlFile
      * @param array $values
@@ -75,7 +61,7 @@ class PdfService
      */
     private function parse($htmlFile, $values)
     {
-        $standaloneView = $this->objectManager->get(StandaloneView::class);
+        $standaloneView = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(StandaloneView::class);
         $standaloneView->setFormat('html');
 
         $standaloneView->setTemplatePathAndFilename($htmlFile);
